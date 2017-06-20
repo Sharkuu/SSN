@@ -27,3 +27,9 @@ Do zrobienia(ogólnie mamy mieæ 5 zbiorów danych : iris ,wine, iosphere, sonar, P
 6. i teraz najlepsze : ZROBIÆ SPRAWOZDANIE I PREZENTACJÊ. prezentacja to takie wybiórcze huje muje, a prezentacja zawiera ca³oœciowy raport co zrobiliœmy i czemu tak a nie inaczej .
 
 -------------
+
+
+# Linki
+1.
+[back propagation](https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/)
+2. [bayesian](http://crsouza.com/2009/11/18/neural-network-learning-by-the-levenberg-marquardt-algorithm-with-bayesian-regularization-part-1/)

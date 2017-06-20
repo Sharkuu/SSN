@@ -17,7 +17,7 @@ Edytuj ten plik jak coœ zrobisz!
 Ogólnie najpierw o materia³ach :
 1 mail zawiera³ 1 pdf (za³ó¿my ¿e nazwê go A) - tam znajduje siê opisana metoda uczenia entropi - mamy j¹ zaimplementowaæ
 2 mail zawiera³ 2 pdf(B i C)  i kod Ÿród³owy - chodzi o to ¿e w algorytmie etropi znajduje siê taki parametr h który siê wylicza za pomoc¹ ró¿nych metod (w tych dwóch pdf- h okreœlane jest mianem signa - niech ciebie to nie zmyli). te dwa pdf ( B i C)maj¹ nam pomóc zrozumieæ o co kaman z tym h - a do³¹czony kod Ÿród³owy ma nam pomóc w implementacji wszystkich 4 metod obliczania h
-
+WA¯NE IOIOIOIO - ROBIMY W£ASN¥ FUNKCJÊ TRAIN - NIE IMPLEMENTUJEMY SIECI FEEDFORWARD
 Do zrobienia(ogólnie mamy mieæ 5 zbiorów danych : iris ,wine, iosphere, sonar, PIMA INDIANS DIABETES - czy jakoœ tak lub jakieœ inne):
 1. zaimplementowaæ metodê uczenia entropii
 2. zaimplementowaæ 4 algorytmy liczenia h 

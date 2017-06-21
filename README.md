@@ -47,5 +47,5 @@ Do zrobienia(ogólnie mamy mieć 5 zbiorów danych : iris ,wine, iosphere, sonar
 
 3.
 
-[dodawanie wlasnego uczenia] (https://www.mathworks.com/matlabcentral/answers/56137-how-to-use-a-custom-transfer-function-in-neural-net-training)
+[dodawanie wlasnego uczenia](https://www.mathworks.com/matlabcentral/answers/56137-how-to-use-a-custom-transfer-function-in-neural-net-training)
 

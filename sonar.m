@@ -3,7 +3,7 @@ clear all;
 
 %%%zmienone dane - R to 1 , M = 0
 
-
+addpath('./datasets');
 load sonar_data;
 ilosc_podzialow = 10;
 sonar_data =   sonar_data';

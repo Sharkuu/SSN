@@ -1,5 +1,5 @@
 clear all;
-
+addpath('./datasets');
 load pima-indians-diabetes-data;
 ilosc_podzialow = 10;
 

@@ -1,4 +1,4 @@
-function a = tansig(n,varargin)
+function a = entropy(n,varargin)
 %TANSIG Symmetric sigmoid transfer function.
 %
 % Transfer functions convert a neural network layer's net input into

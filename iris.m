@@ -10,7 +10,7 @@ input = irisInputs(:,nowa_kolejnosc);
 target = irisTargets(:,nowa_kolejnosc);
 podzial = {};
 
-n = size(irisInputs,2)/ilosc_podzialow; %%%MUSI BYC CALKOWITE
+n = floor(size(irisInputs,2)/ilosc_podzialow); %%%MUSI BYC CALKOWITE
 step = n;
 start = 1;
 

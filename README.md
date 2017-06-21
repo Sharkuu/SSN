@@ -36,6 +36,16 @@ Do zrobienia(ogólnie mamy mieć 5 zbiorów danych : iris ,wine, iosphere, sonar
 
 # Linki
 1.
+
 [back propagation](https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/)
 
-2. [bayesian](http://crsouza.com/2009/11/18/neural-network-learning-by-the-levenberg-marquardt-algorithm-with-bayesian-regularization-part-1/)
+
+2. 
+
+[bayesian](http://crsouza.com/2009/11/18/neural-network-learning-by-the-levenberg-marquardt-algorithm-with-bayesian-regularization-part-1/)
+
+
+3.
+
+[dodawanie wlasnego uczenia] (https://www.mathworks.com/matlabcentral/answers/56137-how-to-use-a-custom-transfer-function-in-neural-net-training)
+

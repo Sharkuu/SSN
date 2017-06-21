@@ -1,30 +1,35 @@
-# POSTÊP PRAC
+# POSTÄ˜P PRAC
+#Olaf 21.06
+DodaÅ‚em brakujÄ…ce datasety - musialem troche pozmieniac implementacje, w sonarze podmienione wartoÅ›ci klas z charÃ³ (R,M) na int (1,0)
+
+
+
 # Olaf 20.06
-Wiêc tak: przygotowa³em 5 datasetów (info o nich przez help nazwa) - najpierw pomieszalem kolejnoœæ a nastêpnie stworzy³em tablice cellów z podzielonymi kolejno wartoœciami - s¹ gotowe do u¿ycia w krzy¿owej walidacji. W ka¿dej kolumnie pierwszy wiersz to wejœcie, drugi - wyjœcie. Iloœæ podzia³ów mo¿na dostosowaæ.
+WiÄ™c tak: przygotowaÅ‚em 5 datasetÃ³w (info o nich przez help nazwa) - najpierw pomieszalem kolejnoÅ›Ä‡ a nastÄ™pnie stworzyÅ‚em tablice cellÃ³w z podzielonymi kolejno wartoÅ›ciami - sÄ… gotowe do uÅ¼ycia w krzyÅ¼owej walidacji. W kaÅ¼dej kolumnie pierwszy wiersz to wejÅ›cie, drugi - wyjÅ›cie. IloÅ›Ä‡ podziaÅ‚Ã³w moÅ¼na dostosowaÄ‡.
 
 
-Przepisa³em ten kod w c# iiii.....no troche bieda. S¹ tam funkcje z dupy, wgl nie wiem co mamy obliczaæ (jest jakieœ sigma). Plus jest jakis blad przy pobieraniu wartoœci (chyba 108 linijka) - mo¿liwe ze sie waln¹³em w indeksach bo matlab indeksuje od 1 tablice. Porównaj to z kodem, postaraj sie znaleŸæ b³¹d i nei wiem co z tymi funkcjami Validate XD
+PrzepisaÅ‚em ten kod w c# iiii.....no troche bieda. SÄ… tam funkcje z dupy, wgl nie wiem co mamy obliczaÄ‡ (jest jakieÅ› sigma). Plus jest jakis blad przy pobieraniu wartoÅ›ci (chyba 108 linijka) - moÅ¼liwe ze sie walnÄ…Å‚em w indeksach bo matlab indeksuje od 1 tablice. PorÃ³wnaj to z kodem, postaraj sie znaleÅºÄ‡ bÅ‚Ä…d i nei wiem co z tymi funkcjami Validate XD
 
-Pytanie - jak mamy wyczarowaæ 4 algorytmy obliczania h? wyslal nam 1 kod, który nie dziala (narazie)
+Pytanie - jak mamy wyczarowaÄ‡ 4 algorytmy obliczania h? wyslal nam 1 kod, ktÃ³ry nie dziala (narazie)
 
-Dzisiaj ju¿ raczej nic nie zrobie, jutro sie pewnie odezwe na fb. 
-Edytuj ten plik jak coœ zrobisz!
+Dzisiaj juÅ¼ raczej nic nie zrobie, jutro sie pewnie odezwe na fb. 
+Edytuj ten plik jak coÅ› zrobisz!
 
 
 --------------
 
 # Notatki Tomka
-Ogólnie najpierw o materia³ach :
-1 mail zawiera³ 1 pdf (za³ó¿my ¿e nazwê go A) - tam znajduje siê opisana metoda uczenia entropi - mamy j¹ zaimplementowaæ
-2 mail zawiera³ 2 pdf(B i C)  i kod Ÿród³owy - chodzi o to ¿e w algorytmie etropi znajduje siê taki parametr h który siê wylicza za pomoc¹ ró¿nych metod (w tych dwóch pdf- h okreœlane jest mianem signa - niech ciebie to nie zmyli). te dwa pdf ( B i C)maj¹ nam pomóc zrozumieæ o co kaman z tym h - a do³¹czony kod Ÿród³owy ma nam pomóc w implementacji wszystkich 4 metod obliczania h
-WA¯NE IOIOIOIO - ROBIMY W£ASN¥ FUNKCJÊ TRAIN - NIE IMPLEMENTUJEMY SIECI FEEDFORWARD
-Do zrobienia(ogólnie mamy mieæ 5 zbiorów danych : iris ,wine, iosphere, sonar, PIMA INDIANS DIABETES - czy jakoœ tak lub jakieœ inne):
-1. zaimplementowaæ metodê uczenia entropii
-2. zaimplementowaæ 4 algorytmy liczenia h 
-3. teraz zaczyna siê jazda. ogólnie mamy sieæ feedforward (musimy dobraæ liczbê neuronów ukrytych  - pêtla itp) - mamy dobraæ najlepszy algorytm h - tzn.  dla jednego  wybranego zestawu testujemy ka¿d¹ metodê obliczania h i wybieramy jedn¹ najlepsz¹ metodê h  - dane mamy testowaæ za pomoc¹ Cross validation (np. dzielimy na 10 czêœci i 9 z nich to ucz¹ce a 1 testowe i przechodzimy 10 razy - kojarzysz ? by³o to do drugiego kolowkium )
-4. maj¹c najlepszy algorytm h  testujemy cross validation dla ka¿dego z tych zestawów 5-6 zestawów danych i oceniamy klasyfikacjê 
-5. nastêpnie mamy  porównaæ z inn¹ sieci¹ np. rbf i grnn - mamy kilka oceniæ typów sieci - najlepiej >=2 bo jak mówilem ¿e mo¿e nam siê udaæ tylko z jedn¹ to mega nie zadowlony by³ ale jebaæ. 
-6. i teraz najlepsze : ZROBIÆ SPRAWOZDANIE I PREZENTACJÊ. prezentacja to takie wybiórcze huje muje, a prezentacja zawiera ca³oœciowy raport co zrobiliœmy i czemu tak a nie inaczej .
+OgÃ³lnie najpierw o materiaÅ‚ach :
+1 mail zawieraÅ‚ 1 pdf (zaÅ‚Ã³Å¼my Å¼e nazwÄ™ go A) - tam znajduje siÄ™ opisana metoda uczenia entropi - mamy jÄ… zaimplementowaÄ‡
+2 mail zawieraÅ‚ 2 pdf(B i C)  i kod ÅºrÃ³dÅ‚owy - chodzi o to Å¼e w algorytmie etropi znajduje siÄ™ taki parametr h ktÃ³ry siÄ™ wylicza za pomocÄ… rÃ³Å¼nych metod (w tych dwÃ³ch pdf- h okreÅ›lane jest mianem signa - niech ciebie to nie zmyli). te dwa pdf ( B i C)majÄ… nam pomÃ³c zrozumieÄ‡ o co kaman z tym h - a doÅ‚Ä…czony kod ÅºrÃ³dÅ‚owy ma nam pomÃ³c w implementacji wszystkich 4 metod obliczania h
+WAÅ»NE IOIOIOIO - ROBIMY WÅASNÄ„ FUNKCJÄ˜ TRAIN - NIE IMPLEMENTUJEMY SIECI FEEDFORWARD
+Do zrobienia(ogÃ³lnie mamy mieÄ‡ 5 zbiorÃ³w danych : iris ,wine, iosphere, sonar, PIMA INDIANS DIABETES - czy jakoÅ› tak lub jakieÅ› inne):
+1. zaimplementowaÄ‡ metodÄ™ uczenia entropii
+2. zaimplementowaÄ‡ 4 algorytmy liczenia h 
+3. teraz zaczyna siÄ™ jazda. ogÃ³lnie mamy sieÄ‡ feedforward (musimy dobraÄ‡ liczbÄ™ neuronÃ³w ukrytych  - pÄ™tla itp) - mamy dobraÄ‡ najlepszy algorytm h - tzn.  dla jednego  wybranego zestawu testujemy kaÅ¼dÄ… metodÄ™ obliczania h i wybieramy jednÄ… najlepszÄ… metodÄ™ h  - dane mamy testowaÄ‡ za pomocÄ… Cross validation (np. dzielimy na 10 czÄ™Å›ci i 9 z nich to uczÄ…ce a 1 testowe i przechodzimy 10 razy - kojarzysz ? byÅ‚o to do drugiego kolowkium )
+4. majÄ…c najlepszy algorytm h  testujemy cross validation dla kaÅ¼dego z tych zestawÃ³w 5-6 zestawÃ³w danych i oceniamy klasyfikacjÄ™ 
+5. nastÄ™pnie mamy  porÃ³wnaÄ‡ z innÄ… sieciÄ… np. rbf i grnn - mamy kilka oceniÄ‡ typÃ³w sieci - najlepiej >=2 bo jak mÃ³wilem Å¼e moÅ¼e nam siÄ™ udaÄ‡ tylko z jednÄ… to mega nie zadowlony byÅ‚ ale jebaÄ‡. 
+6. i teraz najlepsze : ZROBIÄ† SPRAWOZDANIE I PREZENTACJÄ˜. prezentacja to takie wybiÃ³rcze huje muje, a prezentacja zawiera caÅ‚oÅ›ciowy raport co zrobiliÅ›my i czemu tak a nie inaczej .
 
 -------------
 

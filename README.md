@@ -1,5 +1,5 @@
 # POSTĘP PRAC
-#Olaf 21.06
+# Olaf 21.06
 Dodałem brakujące datasety - musialem troche pozmieniac implementacje, w sonarze podmienione wartości klas z charó (R,M) na int (1,0)
 
 

@@ -28,6 +28,7 @@ end
 % % % % % % % % % % % % TU BÊDZIE POWSTAWA£ SZKIELET - POZNIEJ ZROBIE Z
 % TEGO CA£¥ OSOBN¥ FUNKCJE ZWRACAJ¥C¥ SIEÆ
 
+% ZAK£ADAM SIEÆ O JEDNEJ WARSTWIE UKRYTEJ - MNIEJ PIERDOLENIA
 
 net = feedforwardnet(ilosc_neuronow);
 %%%narazie na sztywno ustalam ze zbioryuczace to 1 celle
@@ -76,11 +77,11 @@ h = 1;
         tmp = 0;
         for j=1:N
 %             OBLICZNIE KERNELA - CHYBA TAK TO ROZUMIEM ZE X W ROWNANIU DLA
-%             K JEST e(n)  - do zapytania ew.
+%             K JEST e(n)  
             K = (1/sqrt(2*pi))*exp((-1/2)*(blad(j)^2));
             tmp = tmp + (K*(blad(i) - blad(j))/h);
         end
-        estymator(i) = przed * tmp;
+        estymator(i) = tmp;
     end
     
 %    ZMIANA WAG

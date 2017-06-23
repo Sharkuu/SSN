@@ -21,7 +21,7 @@ STAN NA 20:09
 
 * Ogólnie w kodzie są komentarze przy wątpliwościach i w jakis wazniejszych miejscach.
 
-* Postaraj się zająć tym wyliczaniem h  - ja też zaraz będę patrzył
+* Postaraj się zająć tym wyliczaniem h  - ja też zaraz będę patrzył. Chyba trzeba to porównywać z tymi algorytmami na kartach/zapisaki bo kurwa nie wiem co czym jest XD. Poś poucinałem z poprzedniej wersji. Ew. może najpierw przerobić kod c# na samą sigme a potem na matlab? Nie wiem, jeśli od razu w matlabie to trzeba porówywać z tym jego kodem (fajnie ze jakas dokumentacja jest ;/)
 
 Jak coś to pisz.
 

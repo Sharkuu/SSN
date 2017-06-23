@@ -23,7 +23,7 @@ STAN NA 20:09
 
 * Postaraj się zająć tym wyliczaniem h  - ja też zaraz będę patrzył. Chyba trzeba to porównywać z tymi algorytmami na kartach/zapisaki bo kurwa nie wiem co czym jest XD. Poś poucinałem z poprzedniej wersji. Ew. może najpierw przerobić kod c# na samą sigme a potem na matlab? Nie wiem, jeśli od razu w matlabie to trzeba porówywać z tym jego kodem (fajnie ze jakas dokumentacja jest ;/)
 
-Jak coś to pisz.
+Jak coś to pisz. Dzisiaj będę siedział jakoś do 22-23, jutro pewnie od 12, 16-17:30 mnie nie bedzie w domu a potem mysle od 18 do nocy moge nadupcac. Ogólnie zajebiscie by było jakby dzisiaj/ jutro do 15 był ten algorytm z h
 
 
 

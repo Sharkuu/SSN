@@ -1,6 +1,6 @@
 function [ wynik ] = Q_zero( liczba_rekordow,liczba_klas,liczba_cech )
 % UWAGA MOG£EM TU COŒ ZA DU¯O WYCI¥Æ - JEST KOPIA TEGO CO BY£O WCZEŒNIEJ
-% plik Q_zero_COPY
+% plik Q_zero_COPY test
 wynik = 0; %??????????
 MAX_PROBA = 10;
 ACTION_NUMBER = 6;

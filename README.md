@@ -1,4 +1,35 @@
 # POSTĘP PRAC
+
+# Olaf 23.06
+
+STAN NA 20:09
+
+
+* Wszystko jest edytowane w iris - potem bedziemy sklejac w funkcje. Dodałem tworzenie sieci i zapełnianie wag/biasów randomowo - wg. można było chyba to odpuścić, bo one sie chyba same randomują....ale teraz jest 100% pewności XD ofc niezależnie od ilośsci warstw
+
+* Narazie dla jednej iteracji (zakomentowana petla for po epokach) wyliczam błędy dla wejścia - irys ma 3 outputy więc je zsuumowałem. Mam nadzieje ze tak można XD
+
+* Później miejsce na wyliczenie h
+
+* Estymator - z tego jak rozumiem ten wzór to jego wartość jest od konkretnego błędu, dlatego mamy 2x pętla for - jedna zeby wyliczał tą funkcje dla każdego błędu, a druga bo jest we wzorze.
+
+* Potrzebne obliczanie kernela - nie widze tam nigdzie x poza f(x) a w innym miejscu jest tam e(n) wiec wydaje mi sie że to to (zerknij/pomyśl)
+
+* No i 'wylicza sie' ten estymator - jak pamietam on mowil ze to bylby wykres ze na osi x jest e a na y jest ten estymator - ma to mniej wiecej sens bo f(e) produkuje wektor.
+
+* Zmiana wag - no to chyba na jutro, bo nie za bardzo kminie jak by to zrobić ( te pochodne troche..yhhh XD)
+
+* Ogólnie w kodzie są komentarze przy wątpliwościach i w jakis wazniejszych miejscach.
+
+* Postaraj się zająć tym wyliczaniem h  - ja też zaraz będę patrzył
+
+Jak coś to pisz.
+
+
+
+
+
+
 # Olaf 21.06
 Dodałem brakujące datasety - musialem troche pozmieniac implementacje, w sonarze podmienione wartości klas z charó (R,M) na int (1,0)
 

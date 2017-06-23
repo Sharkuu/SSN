@@ -1,6 +1,8 @@
 function [ wynik ] = Q_zero( liczba_rekordow,liczba_klas,liczba_cech )
-% UWAGA MOG£EM TU COŒ ZA DU¯O WYCI¥Æ - JEST KOPIA TEGO CO BY£O WCZEŒNIEJ
-% plik Q_zero_COPY
+% test.LiczbaRekordow to teraz liczba_rekordow
+% train.Klasy.Count to teraz liczba_klas
+% train.LiczbaCech to teraz liczba_cech
+% WSZYSTKIE ABOVE DALEM JAKO ARGU (?)
 wynik = 0; %??????????
 MAX_PROBA = 10;
 ACTION_NUMBER = 6;
@@ -10,28 +12,38 @@ ACTIONS = [-1, -0.1, -0.01, 0.01, 0.1, 1];
 gamma = 0.95;
 alpha = 0.01;
 % lambdaq = 0.7
-sc_min = ones(liczba_klas,liczba_cech);  %%%%%%% MÓWI£ ZE LICZBA KLAS I LICZBA CECH DOTYCZY CZEGOS INNEGO - 
-sigma = 0; %<----TO OBLICZAMY, MA BYÆ JEDNA WARTOŒÆ
+sc_min = ones(liczba_klas,liczba_cech);  %%%%%%% chyba to trzeba (?)
+sigma = ones(liczba_klas,liczba_cech);
 
-% % //funkcja wartoœci akcji (wype³nione zerami)
-% %             double[, , ,] Q = new double[BOX_COUNT, l_klas, l_cech, ACTION_NUMBER];
-% Q = zeros(BOX_COUNT, liczba_klas, liczba_cech, ACTION_NUMBER);
-% %             //sygna³ wzmocnienia (wype³nione zerami)
-% %             double[, ,] r = new double[l_klas, l_cech, ACTION_NUMBER];
-% r = zeros(liczba_klas, liczba_cech, ACTION_NUMBER);
-% %             //(wype³nione zerami)
-% %             double[, ,] delta = new double[l_klas, l_cech, ACTION_NUMBER];
-% delta = zeros(liczba_klas, liczba_cech, ACTION_NUMBER);
-% 
-% %             double[,] SSE = new double[l_klas, l_cech];
-% SSE = zeros(liczba_klas,liczba_cech);
-% %             double[,] SSE_old = new double[l_klas, l_cech];
-% SSE_old = zeros(liczba_klas,liczba_cech);
+% //funkcja wartoœci akcji (wype³nione zerami)
+%             double[, , ,] Q = new double[BOX_COUNT, l_klas, l_cech, ACTION_NUMBER];
+Q = zeros(BOX_COUNT, liczba_klas, liczba_cech, ACTION_NUMBER);
+%             //sygna³ wzmocnienia (wype³nione zerami)
+%             double[, ,] r = new double[l_klas, l_cech, ACTION_NUMBER];
+r = zeros(liczba_klas, liczba_cech, ACTION_NUMBER);
+%             //(wype³nione zerami)
+%             double[, ,] delta = new double[l_klas, l_cech, ACTION_NUMBER];
+delta = zeros(liczba_klas, liczba_cech, ACTION_NUMBER);
+
+%             double[,] SSE = new double[l_klas, l_cech];
+SSE = zeros(liczba_klas,liczba_cech);
+%             double[,] SSE_old = new double[l_klas, l_cech];
+SSE_old = zeros(liczba_klas,liczba_cech);
+
+% double SSE_min = Test(); // Validate(test);    % WTF CO TO JEST ZA
+% FUNKCJA, NIGDZIE JEJ NIE MA
+SSE_min = 4; %NIE WIEM CO TU MA BYC
 
 l_iteracji_sc = 10;
 SSE_sc_vec_init = [];
 
 for i=1:l_iteracji_sc
+    for j=1:liczba_klas
+        for k=1:liczba_cech
+            sigma(j,k) = i + 1 ; 
+        end
+    end 
+%     SSE_sc_vec_init[i] = Test(); // Validate(test); % ?????????????????
 SSE_sc_vec_init(i) = 1; %znowu nei wiem co tu ma byc
 end
 
@@ -48,8 +60,14 @@ end
 
 
 
+sc_START = zeros(liczba_klas,liczba_cech);
 
-        sigma= ind_wart +1;
+for i=1:liczba_klas
+    for j=1:liczba_cech
+        sc_START(i,j) = ind_wart +1;
+        sigma(i,j) = sc_START(i,j);
+    end
+end
 
 nextbox = Get_box_pnn1s(SSE_min, liczba_rekordow);
 box = nextbox;

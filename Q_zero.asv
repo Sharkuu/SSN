@@ -1,6 +1,8 @@
 function [ wynik ] = Q_zero( liczba_rekordow,liczba_klas,liczba_cech )
-% UWAGA MOG£EM TU COŒ ZA DU¯O WYCI¥Æ - JEST KOPIA TEGO CO BY£O WCZEŒNIEJ
-% plik Q_zero_COPY
+% test.LiczbaRekordow to teraz liczba_rekordow
+% train.Klasy.Count to teraz liczba_klas
+% train.LiczbaCech to teraz liczba_cech
+% WSZYSTKIE ABOVE DALEM JAKO ARGU (?)
 wynik = 0; %??????????
 MAX_PROBA = 10;
 ACTION_NUMBER = 6;
@@ -47,6 +49,8 @@ for i=2:l_iteracji_sc
 end
 
 
+
+sc_START = zeros(liczba_klas,liczba_cech);
 
 
         sigma= ind_wart +1;

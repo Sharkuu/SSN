@@ -108,7 +108,7 @@ entropy{2} = [1 2 3]; %
 %    ZMIANA WAG
 % % % % % % % % % % % % % % %  
 wsp_uczenia = 3; %do ustalenia
-
+% % % % % to jest chyba Ÿle, bo to bêd¹ matrixy a nie vektory
 %%%input->hidden layer
 layer = net.IW{1};
 for i=1:size(layer,1)

@@ -74,17 +74,19 @@ h = 1;
 %     cz³on przed sumowaniem
     przed = 1/N*h;
     estymator = [];
-    for i=1:N
-        tmp = 0;
-        for j=1:N
-%             OBLICZNIE KERNELA - CHYBA TAK TO ROZUMIEM ZE X W ROWNANIU DLA
-%             K JEST e(n)  - do zapytania ew.
-            K = (1/sqrt(2*pi))*exp((-1/2)*(blad(j)^2));
-            tmp = tmp + (K*(blad(i) - blad(j))/h);
+    for k=1:size(blad,1)
+        for i=1:N
+            tmp = 0;
+            for j=1:N                
+                tmp = tmp + K((blad(k,i) - blad(k,j))/h);
+            end
+            estymator(k,i) = przed * tmp;
         end
-        estymator(i) = przed * tmp;
     end
-    plot(sort(blad),estymator);
+     plot(sort(blad(1,:)),estymator(1,:));
+%      plot(sort(blad(2,:)),estymator(2,:));
+%      plot(sort(blad(3,:)),estymator(3,:));
+
     
     
 % % % % % % % % % % % % % % % %   WARTOŒCI WSZYSTKICH ENURONOW DLA
@@ -100,11 +102,21 @@ h = 1;
 entropy = {};
 entropy{1} = ones(6,4); %pierwsza warstwa ukryta
 entropy{2} = ones(3,6); % 
-        
+% % % % % % % % % % % % % % % % % % % % %         
+entropia = {};
+% % % % warstwa hidden->out
+wsp_przed = 1/(N*N*h*h);
 
 
+tmp = 0;
+for n=1:N
+    for l=1:N
+        tmp = tmp + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l)) %* noo i tu nie wiem co XD
+    end
+end
 
-% % % % % % % % % % % % % % % % 
+
+% % % % % % % % % % % % % % % 
 %    ZMIANA WAG
 % % % % % % % % % % % % % % %  
 wsp_uczenia = 3; %do ustalenia

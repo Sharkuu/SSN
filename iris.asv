@@ -74,49 +74,68 @@ h = 1;
 %     cz³on przed sumowaniem
     przed = 1/N*h;
     estymator = [];
-    for i=1:N
-        tmp = 0;
-        for j=1:N
-%             OBLICZNIE KERNELA - CHYBA TAK TO ROZUMIEM ZE X W ROWNANIU DLA
-%             K JEST e(n)  - do zapytania ew.
-            K = (1/sqrt(2*pi))*exp((-1/2)*(blad(j)^2));
-            tmp = tmp + (K*(blad(i) - blad(j))/h);
+    for k=1:size(blad,1)
+        for i=1:N
+            tmp = 0;
+            for j=1:N                
+                tmp = tmp + K((blad(k,i) - blad(k,j))/h);
+            end
+            estymator(k,i) = przed * tmp;
         end
-        estymator(i) = przed * tmp;
     end
-    plot(sort(blad),estymator);
+     plot(sort(blad(1,:)),estymator(1,:));
+%      plot(sort(blad(2,:)),estymator(2,:));
+%      plot(sort(blad(3,:)),estymator(3,:));
+
     
     
 % % % % % % % % % % % % % % % %   WARTOŒCI WSZYSTKICH ENURONOW DLA
 % WSZYSTKICH DANYCH WEJSCIOWYCH UCZACYCH
 % % % % ZWRACA CELLE - NA GORZE WYJSCIE WARSWY UKRYTEJ, NA DOLE WARSTWY
 % OUTPUTOWEJ(nie wiem czy to dobrze, ¿e sie rozni od net(wejscie_uczace)
-wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
+% wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
 % % % % % % % % % % % % % % NIEPOTRZBENE TO CO WYZEJ
 
 
 
 % % % % % % % % PROPAGACJA WZÓR 5(narazie na pa³e wartosci)
 entropy = {};
-entropy{1} = [1 2 3 4 5 6]; %pierwsza warstwa ukryta
-entropy{2} = [1 2 3]; % 
-        
+entropy{1} = ones(6,4); %pierwsza warstwa ukryta
+entropy{2} = ones(3,6); % 
+% % % % % % % % % % % % % % % % % % % % %         
+entropia = {};
+% % % % warstwa hidden->out
+wsp_przed = 1/(N*N*h*h);
 
 
+tmp = 0;
+for n=1:N
+    for l=1:N
+        K = (1/sqrt(2*pi))*exp((-1/2)*(blad(n)^2));
+        tmp = tmp + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* ( 
 
-% % % % % % % % % % % % % % % % 
+
+% % % % % % % % % % % % % % % 
 %    ZMIANA WAG
 % % % % % % % % % % % % % % %  
 wsp_uczenia = 3; %do ustalenia
 
-%%%input layer
+%%%input->hidden layer
 layer = net.IW{1};
-e = 
 for i=1:size(layer,1)
     for j=1:size(layer,2)
-        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(
-
-
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(i,j);
+    end
+end
+net.IW{1} = layer;
+%%%hidden->output layer
+layer = net.LW{2};
+for i=1:size(layer,1)
+    for j=1:size(layer,2)
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{2}(i,j);
+    end
+end
+net.LW{2} = layer;
 % % % % % % % % % % % % % % % % % % % 
 
     

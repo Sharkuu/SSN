@@ -84,33 +84,22 @@ h = 1;
         end
         estymator(i) = przed * tmp;
     end
+    plot(sort(blad),estymator);
     
     
-% % % % % % % % % % % % % % % %   WARTOŒCI 
-input_layer = [];
-bias = net.b{1};
-input = net.IW{1};
-k = 1 ;%to bedzie dla kazdego
-% % 
-for i=1:ilosc_neuronow
-    b = bias(i,1);
-    tmp = 0;
-    for j=1:size(wejscie_uczace,1)
-        tmp = tmp + wejscie_uczace(j,k)*input(i,j);
-    end
-    input_layer(i) = b+tmp;
-end
-bias = net.b{2};
-input = net.LW{2};
-output_layer = [];
-for i=1:size(wyjscie_uczace,1)
-    b = bias(i,1);
-    tmp = 0;
-    for j=1:ilosc_neuronow
-        tmp = tmp + input_layer(j)*input(i,j);
-    end
-    output_layer(i) = b + tmp;
-end
+% % % % % % % % % % % % % % % %   WARTOŒCI WSZYSTKICH ENURONOW DLA
+% WSZYSTKICH DANYCH WEJSCIOWYCH UCZACYCH
+% % % % ZWRACA CELLE - NA GORZE WYJSCIE WARSWY UKRYTEJ, NA DOLE WARSTWY
+% OUTPUTOWEJ(nie wiem czy to dobrze, ¿e sie rozni od net(wejscie_uczace)
+wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
+% % % % % % % % % % % % % % NIEPOTRZBENE TO CO WYZEJ
+
+
+
+% % % % % % % % PROPAGACJA WZÓR 5(narazie na pa³e wartosci)
+entropy = {};
+entropy{1} = [1 2 3 4 5 6]; %pierwsza warstwa ukryta
+entropy{2} = [1 2 3]; % 
         
 
 
@@ -118,7 +107,14 @@ end
 % % % % % % % % % % % % % % % % 
 %    ZMIANA WAG
 % % % % % % % % % % % % % % %  
+wsp_uczenia = 3; %do ustalenia
 
+%%%input layer
+layer = net.IW{1};
+e = 
+for i=1:size(layer,1)
+    for j=1:size(layer,2)
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(
 
 
 % % % % % % % % % % % % % % % % % % % 

@@ -84,6 +84,7 @@ h = 1;
         end
         estymator(i) = przed * tmp;
     end
+    plot(sort(blad),estymator);
     
     
 % % % % % % % % % % % % % % % %   WARTOŒCI WSZYSTKICH ENURONOW DLA
@@ -91,7 +92,14 @@ h = 1;
 % % % % ZWRACA CELLE - NA GORZE WYJSCIE WARSWY UKRYTEJ, NA DOLE WARSTWY
 % OUTPUTOWEJ(nie wiem czy to dobrze, ¿e sie rozni od net(wejscie_uczace)
 wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
+% % % % % % % % % % % % % % NIEPOTRZBENE TO CO WYZEJ
 
+
+
+% % % % % % % % PROPAGACJA WZÓR 5(narazie na pa³e wartosci)
+entropy = {};
+entropy{1} = [1 2 3 4 5 6]; %pierwsza warstwa ukryta
+entropy{2} = [1 2 3]; % 
         
 
 
@@ -99,9 +107,24 @@ wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,i
 % % % % % % % % % % % % % % % % 
 %    ZMIANA WAG
 % % % % % % % % % % % % % % %  
+wsp_uczenia = 3; %do ustalenia
 
-
-
+%%%input->hidden layer
+layer = net.IW{1};
+for i=1:size(layer,1)
+    for j=1:size(layer,2)
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(i);
+    end
+end
+net.IW{1} = layer;
+%%%hidden->output layer
+layer = net.LW{2};
+for i=1:size(layer,1)
+    for j=1:size(layer,2)
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(i);
+    end
+end
+net.LW{2} = layer;
 % % % % % % % % % % % % % % % % % % % 
 
     

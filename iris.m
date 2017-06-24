@@ -98,8 +98,8 @@ h = 1;
 
 % % % % % % % % PROPAGACJA WZÓR 5(narazie na pa³e wartosci)
 entropy = {};
-entropy{1} = [1 2 3 4 5 6]; %pierwsza warstwa ukryta
-entropy{2} = [1 2 3]; % 
+entropy{1} = ones(6,4); %pierwsza warstwa ukryta
+entropy{2} = ones(3,6); % 
         
 
 
@@ -108,12 +108,12 @@ entropy{2} = [1 2 3]; %
 %    ZMIANA WAG
 % % % % % % % % % % % % % % %  
 wsp_uczenia = 3; %do ustalenia
-% % % % % to jest chyba Ÿle, bo to bêd¹ matrixy a nie vektory
+
 %%%input->hidden layer
 layer = net.IW{1};
 for i=1:size(layer,1)
     for j=1:size(layer,2)
-        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(i);
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(i,j);
     end
 end
 net.IW{1} = layer;
@@ -121,7 +121,7 @@ net.IW{1} = layer;
 layer = net.LW{2};
 for i=1:size(layer,1)
     for j=1:size(layer,2)
-        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{2}(i);
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{2}(i,j);
     end
 end
 net.LW{2} = layer;

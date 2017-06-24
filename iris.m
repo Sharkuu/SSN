@@ -91,7 +91,7 @@ h = 1;
 % WSZYSTKICH DANYCH WEJSCIOWYCH UCZACYCH
 % % % % ZWRACA CELLE - NA GORZE WYJSCIE WARSWY UKRYTEJ, NA DOLE WARSTWY
 % OUTPUTOWEJ(nie wiem czy to dobrze, ¿e sie rozni od net(wejscie_uczace)
-wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
+% wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
 % % % % % % % % % % % % % % NIEPOTRZBENE TO CO WYZEJ
 
 
@@ -121,7 +121,7 @@ net.IW{1} = layer;
 layer = net.LW{2};
 for i=1:size(layer,1)
     for j=1:size(layer,2)
-        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(i);
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{2}(i);
     end
 end
 net.LW{2} = layer;

@@ -86,7 +86,10 @@ h = 1;
     end
     
     
-% % % % % % % % % % % % % % % %   WARTOŒCI 
+% % % % % % % % % % % % % % % %   WARTOŒCI WSZYSTKICH ENURONOW DLA
+% WSZYSTKICH DANYCH WEJSCIOWYCH UCZACYCH
+% % % % ZWRACA CELLE - NA GORZE WYJSCIE WARSWY UKRYTEJ, NA DOLE WARSTWY
+% OUTPUTOWEJ
 wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
 
         

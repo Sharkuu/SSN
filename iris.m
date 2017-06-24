@@ -55,7 +55,7 @@ net.b{2} = rand(size(wyjscie_uczace,1),1);
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
     blad = wyjscie_uczace - odpowiedz;
 %     jeœli mamy tak jak w irysie 3 wyjscie to sumujemy kolumny - CHYBA
-%     MOZNA XD
+%     MOZNA XD bo jak nie to nie wiem jak sie uporac z tym
     if size(blad,2)>1
         blad = sum(blad);
     end

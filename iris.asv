@@ -91,7 +91,7 @@ input_layer = [];
 bias = net.b{1};
 input = net.IW{1};
 k = 1 ;%to bedzie dla kazdego
-% % mam nadzieje ze dobrze to zrobilem XDD
+% % 
 for i=1:ilosc_neuronow
     b = bias(i,1);
     tmp = 0;

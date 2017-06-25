@@ -42,35 +42,29 @@ net.IW{1,1} = rand(ilosc_neuronow(1),size(wejscie_uczace,1)-1);
 net.b{1} =rand(ilosc_neuronow(1),1);
 net.LW{2} =rand(size(wyjscie_uczace,1),ilosc_neuronow(1));
 net.b{2} = rand(size(wyjscie_uczace,1),1);
-% for i=1:size(ilosc_neuronow,2)-1
-%     net.LW{i+1,i} = rand(ilosc_neuronow(i+1),ilosc_neuronow(i))
-%     net.b{i+1} = rand(ilosc_neuronow(i+1),1);
-% end
-% net.LW{size(wejscie_uczace,1),size(ilosc_neuronow,2)} = rand(size(wyjscie_uczace,1),ilosc_neuronow(size(ilosc_neuronow,2)));        
-% net.b{size(ilosc_neuronow,2)+1} = rand(size(wyjscie_uczace,1),1);   
-%%%%%niby sie wszystko zawsze wypelnia randomowo, ale zrobilem to jeszcze
-%%%%%raz
+
 
 
 % % % UCZENIE
 
-% for e=1:ilosc_epok
+for e=1:5
     odpowiedz = (net(wejscie_uczace));
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
     blad = wyjscie_uczace - odpowiedz;
-%     jeœli mamy tak jak w irysie 3 wyjscie to sumujemy kolumny - CHYBA
-%     MOZNA XD bo jak nie to nie wiem jak sie uporac z tym
-
     
 %     MIEJSCE NA WYLICZENIE h
-% % % % % % % % % % % % % % % % % % % % % % % % %     
-h = 1;
+% % % % % % % % % % % % % % % % % % % % % % % % %   
 
+% wzor z wikipedi,niech bedzie dopoki nie skminie o co chodzi ztym z kodu
+% wzory na K w wikipedi zgadzaly sie z tym pdf wiec jest szansa ze to
+% bedzie podobne cos
+
+h = std(blad)*(4/3/size(blad,2))^(1/5);
 % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 %     obliczanie estymatora f(e(n)) od kazdego bledu (chyba tak to ma byc
 %     bo wystepuje e(n)
-
+% blad=sort(blad);
     N = size(wejscie_uczace,2);
 %     cz³on przed sumowaniem
     przed = 1/N*h;
@@ -84,18 +78,10 @@ h = 1;
             estymator(k,i) = przed * tmp;
         end
     end
-     plot(sort(blad(1,:)),estymator(1,:));
+     plot((blad(1,:)),estymator(1,:));
 %      plot(sort(blad(2,:)),estymator(2,:));
 %      plot(sort(blad(3,:)),estymator(3,:));
 
-    
-    
-% % % % % % % % % % % % % % % %   WARTOŒCI WSZYSTKICH ENURONOW DLA
-% WSZYSTKICH DANYCH WEJSCIOWYCH UCZACYCH
-% % % % ZWRACA CELLE - NA GORZE WYJSCIE WARSWY UKRYTEJ, NA DOLE WARSTWY
-% OUTPUTOWEJ(nie wiem czy to dobrze, ¿e sie rozni od net(wejscie_uczace)
-% wyjscia_neuronow = oblicz_wyjscia_neuronow(net, wejscie_uczace, wyjscie_uczace,ilosc_neuronow);
-% % % % % % % % % % % % % % NIEPOTRZBENE TO CO WYZEJ
 
 
 
@@ -112,7 +98,7 @@ wsp_przed = 1/(N*N*h*h);
 tmp = 0;
 for n=1:N
     for l=1:N
-        tmp = tmp + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l)) %* noo i tu nie wiem co XD
+        tmp = tmp + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l));  %* noo i tu nie wiem co XD
     end
 end
 
@@ -143,7 +129,7 @@ net.LW{2} = layer;
     
     
     
-% end
+end
 
 
 

@@ -69,7 +69,7 @@ h = 1;
 
 %     obliczanie estymatora f(e(n)) od kazdego bledu (chyba tak to ma byc
 %     bo wystepuje e(n)
-
+%     blad = sort(blad);
     N = size(wejscie_uczace,2);
 %     cz³on przed sumowaniem
     przed = 1/N*h;
@@ -83,7 +83,7 @@ h = 1;
             estymator(k,i) = przed * tmp;
         end
     end
-     plot(sort(blad(1,:)),estymator(1,:));
+     plot((blad(1,:)),estymator(1,:));
 %      plot(sort(blad(2,:)),estymator(2,:));
 %      plot(sort(blad(3,:)),estymator(3,:));
 

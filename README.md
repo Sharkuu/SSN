@@ -1,5 +1,22 @@
 # POSTĘP PRAC
-#Tomek 25.06
+
+# Pytania do doktora Kowalskiego
+--------------
+# Olaf
+* Wzór 5 - propagacja czego, suma po sumie, czy zwraca to co mi sie wydaje
+* Czy K jest ok
+* Czy uaktualnianie wag jest ok
+
+--------------
+
+# Olaf 25.06
+* dalej nie wiem dokladnie jak wykorzystac wzor 5 (co propagować, dlaczego tam jest suma sumy?) wiec chyba dopiero jutro sie go spytam
+
+* lekki porządek kodu - osobna funkcja do liczenia estymatora, osobna do uaktualniania wag( jeśli dobrze rozumiem to co zwróci wzór 5)
+
+* przygotowałem prezentacje confusion matrix dla wszystkich datasetów
+
+# Tomek 25.06
 * pracuje nad algorytmem h - jeśli nic z tego nie wyjdzie do południa to jebać. 
 
 * Co do sieci neuronowej . z tego co pamiętam mówil że mamy przetestować zachowanie dla różnej liczby neuronów ukrytych i dla różnych funkcji warstwy ukrytej

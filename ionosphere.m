@@ -66,7 +66,6 @@ h = std(blad)*(4/3/size(blad,2))^(1/5);
 %     bo wystepuje e(n)
 % blad=sort(blad);
     N = size(wejscie_uczace,2);
-%     cz³on przed sumowaniem
 estymator = f_estymator(N,h,blad);
      plot((blad(1,:)),estymator(1,:));
 %      plot(sort(blad(2,:)),estymator(2,:));
@@ -75,7 +74,7 @@ estymator = f_estymator(N,h,blad);
 
 
 
-% % % % % % % % PROPAGACJA WZÓR 5(narazie na pa³e wartosci)
+% % % % % % % % PROPAGACJA WZÓR 5(narazie hardcoded wartosci)
 entropy = {};
 entropy{1} = ones(6,33); %pierwsza warstwa ukryta
 entropy{2} = ones(1,6); % 
@@ -108,5 +107,48 @@ net = uaktualnij_wagi(net,entropy,wsp_uczenia);
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-    
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% GDY SIEC JEST NAUCZONA
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% NARAZIE HARDCODED
+test_wejsciowe = [];
+test_wyjsciowe = [];
+for i=2:ilosc_podzialow
+test_wejsciowe = [test_wejsciowe podzial{1,i}];
+test_wyjsciowe = [test_wyjsciowe podzial{2,i}];
+end
+% odp = round(net(test_wejsciowe));
+odp = test_wyjsciowe;
+% % % % % % GDY MAMY JU¯ WYNIKI - CONFUSION MATRIX
+wynik = {'wynik\dane','KG','KB';'KG', 0 ,0 ;'KB', 0 ,0 ;'inne', 0,0;}   ;
+
+
+ for i=1:size(test_wyjsciowe,2)
+     if odp(:,i) == test_wyjsciowe(:,i)
+         if odp(:,i) == 1
+             wynik{2,2} = wynik{2,2}+1;
+         elseif odp(:,i) == 0
+             wynik{3,3} = wynik{3,3}+1;
+         end
+     else
+         if test_wyjsciowe(:,i) == 1
+             if odp(:,i) == 0
+                 wynik{3,2} = wynik{3,2}+1;
+             else
+                 wynik{4,2} = wynik{4,2}+1;
+             end
+         elseif test_wyjsciowe(:,i) == 0
+             if odp(:,i) == 1
+                 wynik{2,3} = wynik{2,3}+1;
+             else
+                 wynik{4,3} = wynik{4,3}+1;
+             
+             end
+         end
+     end
+ end
+         
+     
+
 

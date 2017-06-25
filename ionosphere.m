@@ -47,11 +47,11 @@ net.b{2} = rand(size(wyjscie_uczace,1),1);
 
 % % % UCZENIE
 
-for e=1:5
+% for e=1:5
     odpowiedz = (net(wejscie_uczace));
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
-    blad = wyjscie_uczace - odpowiedz;
-    
+    blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniokwadratowa bledu
+%     blad2 = wyjscie_uczace - odpowiedz;
 %     MIEJSCE NA WYLICZENIE h
 % % % % % % % % % % % % % % % % % % % % % % % % %   
 
@@ -67,17 +67,7 @@ h = std(blad)*(4/3/size(blad,2))^(1/5);
 % blad=sort(blad);
     N = size(wejscie_uczace,2);
 %     cz³on przed sumowaniem
-    przed = 1/N*h;
-    estymator = [];
-    for k=1:size(blad,1)
-        for i=1:N
-            tmp = 0;
-            for j=1:N                
-                tmp = tmp + K((blad(k,i) - blad(k,j))/h);
-            end
-            estymator(k,i) = przed * tmp;
-        end
-    end
+estymator = f_estymator(N,h,blad);
      plot((blad(1,:)),estymator(1,:));
 %      plot(sort(blad(2,:)),estymator(2,:));
 %      plot(sort(blad(3,:)),estymator(3,:));
@@ -108,28 +98,12 @@ end
 % % % % % % % % % % % % % % %  
 wsp_uczenia = 3; %do ustalenia
 
-%%%input->hidden layer
-layer = net.IW{1};
-for i=1:size(layer,1)
-    for j=1:size(layer,2)
-        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{1}(i,j);
-    end
-end
-net.IW{1} = layer;
-%%%hidden->output layer
-layer = net.LW{2};
-for i=1:size(layer,1)
-    for j=1:size(layer,2)
-        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{2}(i,j);
-    end
-end
-net.LW{2} = layer;
-% % % % % % % % % % % % % % % % % % % 
+net = uaktualnij_wagi(net,entropy,wsp_uczenia);
 
     
     
     
-end
+% end
 
 
 

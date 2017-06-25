@@ -23,6 +23,7 @@ for i=1:ilosc_podzialow
     podzial{2,i} = tmp2;
     k = k + each_class_num;
 end
+clear each_* iris* k tmp tmp2 i
 %%%w cellach mamy podzial komorek gotowy do cross validation
 
 

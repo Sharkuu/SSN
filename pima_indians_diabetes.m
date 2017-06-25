@@ -5,25 +5,39 @@ ilosc_podzialow = 10;
 ilosc_neuronow = 6;
 
 data = pima_indians_diabetes_data';
-target = data(9,:);
-input = data(1:8,:);
+target = data(9,1:760);
+input = data(1:8,1:760);
+index_out_1 = find(target==1);
+index_out_0 = find(target== 0);
 
-nowa_kolejnosc = randperm(size(input,2));
-input = input(:,nowa_kolejnosc);
-target = target(:,nowa_kolejnosc);
+input_class_1 = input(:,index_out_1);
+input_class_0 = input(:,index_out_0);
+output_class_1 = target(:,index_out_1);
+output_class_0 = target(:,index_out_0);
+
+class_1_num=size(input_class_1,2);
+class_0_num=size(input_class_0,2);
 podzial = {};
 
-n = floor(size(input,2)/ilosc_podzialow); %%%MUSI BYC CALKOWITE
-step = n;
-start = 1;
+each_1_num = floor(class_1_num/ilosc_podzialow);
+each_0_num = floor(class_0_num/ilosc_podzialow);
+
+k0=1;
+k1=1;
 
 for i=1:ilosc_podzialow
-    podzial{1,i} = input(:,start:n);
-    podzial{2,i} = target(:,start:n);
-    start = start + step;
-    n = n + step;
+    tmp = input_class_1(:,k1:k1+each_1_num-1);
+    tmp = [tmp input_class_0(:,k0:k0+each_0_num-1);];
+    tmp2 = output_class_1(:,k1:k1+each_1_num-1);
+    tmp2 = [tmp2 output_class_0(:,k0:k0+each_0_num-1);];
+    podzial{1,i} = tmp;
+    podzial{2,i} = tmp2;
+    k1 = k1 + each_1_num;
+    k0 = k0 + each_0_num;
+    
 end
 
+clear k1 k0  tmp tmp2 output_class_0 output_class_1 input_class_0 input_class_1 index_out_1 index_out_0 each_0_num each_1_num class_1_num class_0_num i data
 
 net = feedforwardnet(ilosc_neuronow);
 %%%narazie na sztywno ustalam ze zbioryuczace to 1 celle

@@ -36,7 +36,7 @@ for i=1:ilosc_podzialow
     k3 = k3 + each_3_num;
     
 end
-
+clear class_* each_* i k1 k2 k3 tmp tmp2 wine*
 
 %%%w cellach mamy podzial komorek gotowy do cross validation
     

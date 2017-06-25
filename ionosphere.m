@@ -1,5 +1,3 @@
-
-
 clear all;
 load ionosphere;
 ilosc_podzialow = 10;
@@ -39,6 +37,7 @@ for i=1:ilosc_podzialow
     kb = kb + each_B_num;
     
 end
+clear class_* each_* tmp* newY kb kg index_* i Description
 %%%w cellach mamy podzial komorek gotowy do cross validation
     
 

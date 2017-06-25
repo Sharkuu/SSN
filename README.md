@@ -9,6 +9,9 @@
 * co przy 3 wyjsciach (czy sumowac błędy)
 * czy brac sam błąd tj oczekiwana - odpowiedz czy może średniokwadratowy 
 
+# Tomek
+* jak działa algorytm 
+* czy mozna h liczyc z innego wzoru
 --------------
 
 # Tomek

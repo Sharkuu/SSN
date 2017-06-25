@@ -1,35 +1,44 @@
+
+
 clear all;
 load ionosphere;
-ilosc_podzialow = 12;
+ilosc_podzialow = 10;
 ilosc_neuronow = [6];
 X = X';
 Y = Y';
-
-%mieszanie danych 
+X = X(:,1:350);
+Y = Y(:,1:350);
 index_Y_g = find(ismember(Y, 'g'));
 index_Y_b = find(ismember(Y, 'b'));
-
 newY = zeros(1,size(X,2));
 newY(1,index_Y_g) = 1;
 newY(1,index_Y_b) = 0;
 Y = newY;
-% % % ZMIENIAMY ¯E OUTPUT: G == 1, B==0
-nowa_kolejnosc = randperm(size(X,2));
-input = X(:,nowa_kolejnosc);
-target = Y(:,nowa_kolejnosc);
-podzial = {};
+class_G_num = size(index_Y_g,2);
+class_B_num = size(index_Y_b,2);
+% % % G == 1 b== 0 za³o¿enia
+class_G_input = X(:,index_Y_g);
+class_B_input = X(:,index_Y_b);
+class_G_output = Y(:,index_Y_g);
+class_B_output= Y(:,index_Y_b);
 
-n = floor(size(X,2)/ilosc_podzialow); %%%MUSI BYC CALKOWITE
-step = n;
-start = 1;
+each_G_num = floor(class_G_num/ilosc_podzialow);
+each_B_num = floor(class_B_num/ilosc_podzialow);
+
+kb=1;
+kg=1;
 
 for i=1:ilosc_podzialow
-    podzial{1,i} = input(:,start:n);
-    podzial{2,i} = target(:,start:n);
-    start = start + step;
-    n = n + step;
+    tmp = class_G_input(:,kg:kg+each_G_num-1);
+    tmp = [tmp class_B_input(:,kb:kb+each_B_num-1);];
+    tmp2 = class_G_output(:,kg:kg+each_G_num-1);
+    tmp2 = [tmp2 class_B_output(:,kb:kb+each_B_num-1);];
+    podzial{1,i} = tmp;
+    podzial{2,i} = tmp2;
+    kg = kg + each_G_num;
+    kb = kb + each_B_num;
+    
 end
-
 %%%w cellach mamy podzial komorek gotowy do cross validation
     
 

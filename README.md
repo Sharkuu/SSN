@@ -6,6 +6,8 @@
 * Wzór 5 - propagacja czego, suma po sumie, czy zwraca to co mi sie wydaje
 * Czy K jest ok
 * Czy uaktualnianie wag jest ok
+* co przy 3 wyjsciach (czy sumowac błędy)
+* czy brac sam błąd tj oczekiwana - odpowiedz czy może średniokwadratowy 
 
 --------------
 

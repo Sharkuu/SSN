@@ -9,10 +9,16 @@
 
 --------------
 
-# Olaf 25.06
-* dalej nie wiem dokladnie jak wykorzystac wzor 5 (co propagować, dlaczego tam jest suma sumy?) wiec chyba dopiero jutro sie go spytam
+# Tomek
+* algorytm h
 
-* lekki porządek kodu - osobna funkcja do liczenia estymatora, osobna do uaktualniania wag( jeśli dobrze rozumiem to co zwróci wzór 5)
+
+-------------
+
+# Olaf 25.06
+* dalej nie wiem dokladnie jak wykorzystac wzor 5 (co propagować, dlaczego tam jest suma sumy?) wiec chyba dopiero jutro sie spytam
+
+* porządek kodu - osobna funkcja do liczenia estymatora, osobna do uaktualniania wag( jeśli dobrze rozumiem to co zwróci wzór 5)
 
 * przygotowałem prezentacje confusion matrix dla wszystkich datasetów
 

@@ -12,6 +12,10 @@
 # Tomek
 * jak działa algorytm 
 * czy mozna h liczyc z innego wzoru
+* jak obliczane jest Q
+* jak liczyc/traktowac S 
+* jak wybiera sie at
+* czy Q to tablica
 --------------
 
 # Tomek

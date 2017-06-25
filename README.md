@@ -24,6 +24,8 @@
 
 * przygotowałem prezentacje confusion matrix dla wszystkich datasetów
 
+* poprawione dzielenie danych - kazda grupa posiada taką samą ilość od danej klasy
+
 # Tomek 25.06
 * pracuje nad algorytmem h - jeśli nic z tego nie wyjdzie do południa to jebać. 
 

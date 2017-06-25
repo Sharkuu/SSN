@@ -121,34 +121,4 @@ end
 % odp = round(net(test_wejsciowe));
 odp = test_wyjsciowe;
 % % % % % % GDY MAMY JU¯ WYNIKI - CONFUSION MATRIX
-wynik = {'wynik\dane','KG','KB';'KG', 0 ,0 ;'KB', 0 ,0 ;'inne', 0,0;}   ;
-
-
- for i=1:size(test_wyjsciowe,2)
-     if odp(:,i) == test_wyjsciowe(:,i)
-         if odp(:,i) == 1
-             wynik{2,2} = wynik{2,2}+1;
-         elseif odp(:,i) == 0
-             wynik{3,3} = wynik{3,3}+1;
-         end
-     else
-         if test_wyjsciowe(:,i) == 1
-             if odp(:,i) == 0
-                 wynik{3,2} = wynik{3,2}+1;
-             else
-                 wynik{4,2} = wynik{4,2}+1;
-             end
-         elseif test_wyjsciowe(:,i) == 0
-             if odp(:,i) == 1
-                 wynik{2,3} = wynik{2,3}+1;
-             else
-                 wynik{4,3} = wynik{4,3}+1;
-             
-             end
-         end
-     end
- end
-         
-     
-
-
+confusion_matrix = confusion_matrix_iono(odp, test_wyjsciowe);

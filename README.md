@@ -1,4 +1,8 @@
 # POSTĘP PRAC
+#Tomek 25.06
+* pracuje nad algorytmem h - jeśli nic z tego nie wyjdzie do południa to jebać. 
+
+* Co do sieci neuronowej . z tego co pamiętam mówil że mamy przetestować zachowanie dla różnej liczby neuronów ukrytych i dla różnych funkcji warstwy ukrytej
 
 # Olaf 23.06
 

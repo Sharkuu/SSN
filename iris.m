@@ -4,23 +4,25 @@ ilosc_podzialow = 10;
 ilosc_neuronow = [6];
 ilosc_epok = 100;
 %mieszanie danych 
+input = irisInputs;
+target = irisTargets;
+each_class_num = (size(input,2)/ilosc_podzialow)/size(target,1);
 
-nowa_kolejnosc = randperm(size(irisInputs,2));
-input = irisInputs(:,nowa_kolejnosc);
-target = irisTargets(:,nowa_kolejnosc);
 podzial = {};
 
-n = floor(size(irisInputs,2)/ilosc_podzialow); %%%MUSI BYC CALKOWITE
-step = n;
-start = 1;
-
+% n = floor(size(irisInputs,2)/ilosc_podzialow); %%%MUSI BYC CALKOWITE
+k = 1;
 for i=1:ilosc_podzialow
-    podzial{1,i} = input(:,start:n);
-    podzial{2,i} = target(:,start:n);
-    start = start + step;
-    n = n + step;
+    tmp = input(:,k:k+each_class_num-1);
+    tmp = [tmp input(:,50+k:49+k+each_class_num)];
+    tmp = [tmp input(:,100+k:99+k+each_class_num)];
+    tmp2 = target(:,k:k+each_class_num-1);
+    tmp2 = [tmp2 target(:,50+k:49+k+each_class_num)];
+    tmp2 = [tmp2 target(:,100+k:99+k+each_class_num)];
+    podzial{1,i} = tmp;
+    podzial{2,i} = tmp2;
+    k = k + each_class_num;
 end
-
 %%%w cellach mamy podzial komorek gotowy do cross validation
 
 

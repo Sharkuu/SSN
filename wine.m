@@ -1,25 +1,42 @@
 clear all;
 load wine_dataset;
-ilosc_podzialow = 12;
+ilosc_podzialow = 10;
 ilosc_neuronow = 6;
-
+% SKRACAM DANE O 8 ZEBY SIE DALO LADNIE PODZIELIC DO CV
+input = wineInputs(:,1:170);
+target = wineTargets(:,1:170);
 %mieszanie danych 
+class_1_num = 59;
+class_2_num = 71;
+class_3_num = 40;
 
-nowa_kolejnosc = randperm(size(wineInputs,2));
-input = wineInputs(:,nowa_kolejnosc);
-target = wineTargets(:,nowa_kolejnosc);
+each_1_num = floor(class_1_num/ilosc_podzialow);
+each_2_num = floor(class_2_num/ilosc_podzialow);
+each_3_num = floor(class_3_num/ilosc_podzialow);
 podzial = {};
 
-n = floor(size(wineInputs,2)/ilosc_podzialow); %%%MUSI BYC CALKOWITE
-step = n;
-start = 1;
+% n = floor(size(wineInputs,2)/ilosc_podzialow); %%%MUSI BYC CALKOWITE
 
+class_1_num = 59;
+class_2_num = 130;
+k1 = 1;
+k2 = 1;
+k3 = 1;
 for i=1:ilosc_podzialow
-    podzial{1,i} = input(:,start:n);
-    podzial{2,i} = target(:,start:n);
-    start = start + step;
-    n = n + step;
+    tmp = input(:,k1:k1+each_1_num-1);
+    tmp = [tmp input(:,class_1_num+k2:class_1_num-1+k2+each_2_num)];
+    tmp = [tmp input(:,class_2_num+k3:class_2_num-1+k3+each_3_num)];
+    tmp2 = target(:,k1:k1+each_1_num-1);
+    tmp2 = [tmp2 target(:,class_1_num+k2:class_1_num-1+k2+each_2_num)];
+    tmp2 = [tmp2 target(:,class_2_num+k3:class_2_num-1+k3+each_3_num)];
+    podzial{1,i} = tmp;
+    podzial{2,i} = tmp2;
+    k1 = k1 + each_1_num;
+    k2 = k2 + each_2_num;
+    k3 = k3 + each_3_num;
+    
 end
+
 
 %%%w cellach mamy podzial komorek gotowy do cross validation
     
@@ -42,11 +59,13 @@ net.b{2} = rand(size(wyjscie_uczace,1),1);
 % for e=1:5
     odpowiedz = (net(wejscie_uczace));
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
-    blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniokwadratowa bledu
+
+     blad = sum(wyjscie_uczace - odpowiedz);
+    blad = sqrt((blad).^2);%sredniokwadratowa bledu
 %     blad2 = wyjscie_uczace - odpowiedz;
 %     MIEJSCE NA WYLICZENIE h
 % % % % % % % % % % % % % % % % % % % % % % % % %   
-blad = sum(blad);
+
 % wzor z wikipedi,niech bedzie dopoki nie skminie o co chodzi ztym z kodu
 % wzory na K w wikipedi zgadzaly sie z tym pdf wiec jest szansa ze to
 % bedzie podobne cos

@@ -1,7 +1,5 @@
 function [ value ] = d_logsig( x )
-
-f = str2func('logsig');
-value = f(x)*(1-f(x));
+value = (x)*(1-(x));
 
 end
 

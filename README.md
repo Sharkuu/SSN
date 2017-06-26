@@ -1,5 +1,23 @@
 # POSTĘP PRAC
 
+# Tomek 27.06
+
+*  funkcja getH - wstawiasz tylko tablice bledow
+
+*  plik kde.m - nim sie nie przejmuj - potrzebny do liczenia h
+
+*  funkcja getHStatistics
+		pobiera tablice bledow, h, liczbe ukrytych neuronow, numer mieszania cv - patrz np. irisGRNN.m - tam jest cala CV
+		learningIteration - zakladajac ze zwieszkaszmy licznik uczenia sieci - przy okazji sprawdzania tego warunku stopu
+		w sumie tyle wartosci by pliki sie nie nadpisywaly tylko tworzyly osobno
+		proponuje te funkcje stosowac raz na jakis czas np. cv%2 && leartningIteration%10 czy coś w tym stylu 
+		
+* jeśli się nie dodał to stwórz sobie katalog charts    do niego sa zapisywane te wykresy. jak nie ma katalogu to sie sra- sam sobie nie stworzyłem
+
+* funkcja f_out_h - wzor sprawdzajacy czy dane h w miare dobrze radzi sobie z bledem - takie policzenie  histogramu recznie. 
+	funkcja wykorzystywana tylko w getHStatistics
+	
+-----------------------------------------------------------------------------------------
 # Pytania do doktora Kowalskiego
 --------------
 # Olaf

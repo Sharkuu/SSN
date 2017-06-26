@@ -1,4 +1,4 @@
-function [ wyjscia_neuronow ] = oblicz_wyjscia_neuronow(net, wejscie_uczace, ilosc_neuronow )
+function [ wyjscia_neuronow ] = oblicz_wyjscia_neuronow_iono(net, wejscie_uczace, ilosc_neuronow )
 wyjscia_neuronow = {};
 f_1 = net.layers{1}.transferFcn;
 f_1 = str2func(f_1);
@@ -9,7 +9,7 @@ for k=1:size(wejscie_uczace,2)
     for i=1:ilosc_neuronow
         b = bias(i,1);
         tmp = 0;
-        for j=1:size(wejscie_uczace,1)
+        for j=1:(size(wejscie_uczace,1)-1)
             tmp = tmp + wejscie_uczace(j,k)*input(i,j);
         end
         input_layer(i) = b+tmp;

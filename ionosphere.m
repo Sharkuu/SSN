@@ -1,6 +1,6 @@
 clear all;
 load ionosphere;
-ilosc_podzialow = 10;
+ilosc_podzialow =10;
 ilosc_neuronow = [6];
 X = X';
 Y = Y';
@@ -37,7 +37,7 @@ for i=1:ilosc_podzialow
     kb = kb + each_B_num;
     
 end
-clear class_* each_* tmp* newY kb kg index_* i Description
+% clear class_* each_* tmp* newY kb kg index_* i Description
 %%%w cellach mamy podzial komorek gotowy do cross validation
     
 
@@ -50,6 +50,7 @@ net.IW{1,1} = rand(ilosc_neuronow(1),size(wejscie_uczace,1)-1);
 net.b{1} =rand(ilosc_neuronow(1),1);
 net.LW{2} =rand(size(wyjscie_uczace,1),ilosc_neuronow(1));
 net.b{2} = rand(size(wyjscie_uczace,1),1);
+net.layers{2}.transferFcn = 'logsig';
 
 
 
@@ -58,7 +59,8 @@ net.b{2} = rand(size(wyjscie_uczace,1),1);
 % for e=1:5
     odpowiedz = (net(wejscie_uczace));
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
-    blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniokwadratowa bledu
+    blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniakwadratowa bledu
+    wyjscia = oblicz_wyjscia_neuronow_iono(net,wejscie_uczace,ilosc_neuronow);
 %     blad2 = wyjscie_uczace - odpowiedz;
 %     MIEJSCE NA WYLICZENIE h
 % % % % % % % % % % % % % % % % % % % % % % % % %   
@@ -79,54 +81,74 @@ estymator = f_estymator(N,h,blad);
 %      plot(sort(blad(2,:)),estymator(2,:));
 %      plot(sort(blad(3,:)),estymator(3,:));
 
-
+% N=N-1;
 
 
 % % % % % % % % PROPAGACJA WZÓR 5(narazie hardcoded wartosci)
 entropy = {};
-entropy{1} = ones(6,33); %pierwsza warstwa ukryta
-entropy{2} = ones(1,6); % 
+entropy{1} = []; %pierwsza warstwa ukryta
+entropy{2} = []; % 
 % % % % % % % % % % % % % % % % % % % % %         
-entropia = {};
 % % % % warstwa hidden->out
 wsp_przed = 1/(N*N*h*h);
-
-
-tmp = 0;
-for n=1:N
-    for l=1:N
-        tmp = tmp + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l));  %* noo i tu nie wiem co XD
+% kk = back_prop_output(net, 1, blad,wyjscia,1);
+% kkk=net.LW;
+delta = [];
+for k=1:ilosc_neuronow
+    entropia = 0;
+    for n=1:N
+        for l=1:N
+            entropia = entropia + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l)) * (back_prop_output(net, n, blad,wyjscia,k)*wyjscia{n}(k) - back_prop_output(net, l, blad,wyjscia,k)*wyjscia{n}(k)); 
+        end
+        delta(k,n) = back_prop_output(net, n, blad,wyjscia,k);
     end
+    entropy{2} = [entropy{2} wsp_przed*entropia];
+    
 end
 
+
+% % % % % % % % % % % % % % % % 
+% % % % % % warstwa input->hidden
+% for k=1:size(wejscie_uczace,1)-
+for k=1:ilosc_neuronow
+    for j=1:size(wejscie_uczace,1)-1
+    entropia = 0;
+    for n=1:N
+        for l=1:N
+            entropia = entropia + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l)) * (back_prop_input(net, k, n, j,delta,wejscie_uczace) - back_prop_input(net, k, l, j,delta,wejscie_uczace)); 
+        end
+    end
+    entropy{1} = [entropy{1} wsp_przed*entropia];
+    end
+end
 
 % % % % % % % % % % % % % % % 
 %    ZMIANA WAG
 % % % % % % % % % % % % % % %  
 wsp_uczenia = 3; %do ustalenia
-
-net = uaktualnij_wagi(net,entropy,wsp_uczenia);
-
-    
-    
-    
+% 
+% net = uaktualnij_wagi(net,entropy,wsp_uczenia);
+% 
+%     
+%     
+%     
+% % end
+% 
+% 
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+%     % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % GDY SIEC JEST NAUCZONA
+% 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% % NARAZIE HARDCODED
+% test_wejsciowe = [];
+% test_wyjsciowe = [];
+% for i=2:ilosc_podzialow
+% test_wejsciowe = [test_wejsciowe podzial{1,i}];
+% test_wyjsciowe = [test_wyjsciowe podzial{2,i}];
 % end
-
-
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% GDY SIEC JEST NAUCZONA
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% NARAZIE HARDCODED
-test_wejsciowe = [];
-test_wyjsciowe = [];
-for i=2:ilosc_podzialow
-test_wejsciowe = [test_wejsciowe podzial{1,i}];
-test_wyjsciowe = [test_wyjsciowe podzial{2,i}];
-end
 % odp = round(net(test_wejsciowe));
-odp = test_wyjsciowe;
-% % % % % % GDY MAMY JU¯ WYNIKI - CONFUSION MATRIX
-confusion_matrix = confusion_matrix_iono(odp, test_wyjsciowe);
+% % odp = test_wyjsciowe;
+% % % % % % % GDY MAMY JU¯ WYNIKI - CONFUSION MATRIX
+% confusion_matrix = confusion_matrix_iono(odp, test_wyjsciowe);

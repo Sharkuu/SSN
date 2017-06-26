@@ -56,13 +56,15 @@ net.b{2} = rand(size(wyjscie_uczace,1),1);
 % for e=1:ilosc_epok
     odpowiedz = (net(wejscie_uczace));
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
-    blad = wyjscie_uczace - odpowiedz;
+%     blad = wyjscie_uczace - odpowiedz;
+    blad = sqrt((wyjscie_uczace - odpowiedz).^2);
 %     jeœli mamy tak jak w irysie 3 wyjscie to sumujemy kolumny - CHYBA
 %     MOZNA XD bo jak nie to nie wiem jak sie uporac z tym
     if size(blad,2)>1
         blad = sum(blad);
     end
-    
+
+    wyjscia = oblicz_wyjscia_neuronow(net,wejscie_uczace,ilosc_neuronow);
 %     MIEJSCE NA WYLICZENIE h
 % % % % % % % % % % % % % % % % % % % % % % % % %     
 h = std(blad)*(4/3/size(blad,2))^(1/5);

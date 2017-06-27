@@ -58,12 +58,13 @@ net.LW{2} =rand(size(wyjscie_uczace,1),ilosc_neuronow(1));
 net.b{2} = rand(size(wyjscie_uczace,1),1);
 net.layers{2}.transferFcn = 'tansig';
 
-wejscie_uczace = normc(wejscie_uczace);
+% wejscie_uczace = normc(wejscie_uczace);
 % % % UCZENIE
-
+wyjscie = {};
 conf = {};
-for e=1:6
+for e=1:1
     odpowiedz = (net(wejscie_uczace));
+    
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
     blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniakwadratowa bledu
     wyjscia = oblicz_wyjscia_neuronow(net,wejscie_uczace,ilosc_neuronow);
@@ -76,6 +77,7 @@ for e=1:6
 % bedzie podobne cos
 
 h = getH(blad);
+getHStatistics( blad, h,ilosc_neuronow,1,e);
 % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 %     obliczanie estymatora f(e(n)) od kazdego bledu (chyba tak to ma byc
@@ -132,7 +134,7 @@ entropy{1} = entropy_hidden;
 % % % % % % % % % % % % % % % % 
 % %    ZMIANA WAG
 % % % % % % % % % % % % % % % %  
-wsp_uczenia = 2; %do ustalenia
+wsp_uczenia = 0.3; %do ustalenia
 % 
 net = uaktualnij_wagi(net,entropy,wsp_uczenia);
 % 
@@ -156,9 +158,11 @@ test_wyjsciowe = podzial{2,1};
 % test_wyjsciowe = [test_wyjsciowe podzial{2,i}];
 % end
 
-odp = (net(test_wejsciowe));
+odp = round(net(test_wejsciowe));
 
 % % % % % % % GDY MAMY JU¯ WYNIKI - CONFUSION MATRIX
 confusion_matrix = confusion_matrix_sonar(odp,test_wyjsciowe);
 conf{e} = confusion_matrix;
+wyjscie{1,e} = odp;
+wyjscie{2,e} = odpowiedz;
 end

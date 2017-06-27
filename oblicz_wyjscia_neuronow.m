@@ -12,7 +12,7 @@ for k=1:size(wejscie_uczace,2)
         for j=1:size(wejscie_uczace,1)
             tmp = tmp + wejscie_uczace(j,k)*input(i,j);
         end
-        input_layer(i) = b-tmp;
+        input_layer(i) = b+tmp;
     end
  wyjscia_neuronow{1,k} = f_1(input_layer);
 

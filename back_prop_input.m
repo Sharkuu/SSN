@@ -1,6 +1,6 @@
-function [ delta ] = back_prop_input(waga,waga_out,neuron_number,n,numer_cechy,delta,wejscie)
+function [ delta ] = back_prop_input(waga,waga_out,neuron_number,n,numer_cechy,dd,wejscie)
 
-d = delta(neuron_number, n);
+d = dd(neuron_number, n);
 
 v = wejscie(numer_cechy,n);
 u = v*waga;

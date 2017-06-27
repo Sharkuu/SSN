@@ -44,13 +44,26 @@ net = feedforwardnet(ilosc_neuronow);
 %%%narazie na sztywno ustalam ze zbioryuczace to 1 celle
 % wejscie_uczace = podzial{1,1};
 % wyjscie_uczace = podzial{2,1};
-wejscie_uczace = [];
-wyjscie_uczace = [];
-for i=2:ilosc_podzialow
-wejscie_uczace = [wejscie_uczace podzial{1,i}];
-wyjscie_uczace = [wyjscie_uczace podzial{2,i}];
-end
+tabConfUczGlob = {};
+    
+tabConfTestGlob={};
+for step=1:10
+        wejscie_uczace = [];
+        wyjscie_uczace = [];
 
+        for i=1:ilosc_podzialow
+
+            if  i ~= step
+                wejscie_uczace = [wejscie_uczace podzial{1,i}];
+                wyjscie_uczace = [wyjscie_uczace podzial{2,i}];
+
+            end
+
+        end
+        
+        wejscie_testujace = podzial{1,step};
+        wyjscie_testujace = podzial{2,step};
+        
 net = configure(net, wejscie_uczace, wyjscie_uczace);
 net.IW{1,1} = rand(ilosc_neuronow(1),size(wejscie_uczace,1));
 net.b{1} =rand(ilosc_neuronow(1),1);
@@ -61,8 +74,8 @@ net.layers{2}.transferFcn = 'tansig';
 
 % % % UCZENIE
 
-conf = {};
-for e=1:10
+
+% for e=1:5
     odpowiedz = (net(wejscie_uczace));
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
     blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniakwadratowa bledu
@@ -149,16 +162,19 @@ net = uaktualnij_wagi(net,entropy,wsp_uczenia);
 % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % NARAZIE HARDCODED
-test_wejsciowe = podzial{1,1};
-test_wyjsciowe = podzial{2,1};
+% test_wejsciowe = podzial{1,1};
+% test_wyjsciowe = podzial{2,1};
 % for i=2:ilosc_podzialow
 % test_wejsciowe = [test_wejsciowe podzial{1,i}];
 % test_wyjsciowe = [test_wyjsciowe podzial{2,i}];
 % end
 
-odp = (net(test_wejsciowe));
+uczWynik = net(wejscie_uczace);
+testWynik  = net(wejscie_testujace); 
 
 % % % % % % % GDY MAMY JU¯ WYNIKI - CONFUSION MATRIX
-confusion_matrix = confusion_matrix_sonar(odp,test_wyjsciowe);
-conf{e} = confusion_matrix;
-end
+confusion_matrix_ucz = confusion_matrix_pima(uczWynik,wyjscie_uczace);
+confusion_matrix_test = confusion_matrix_pima(testWynik,wyjscie_testujace);
+         tabConfUczGlob{step} = confusion_matrix_ucz;
+         tabConfTestGlob{step} = confusion_matrix_test;
+    end

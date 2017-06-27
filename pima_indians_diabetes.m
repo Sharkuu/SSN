@@ -58,11 +58,11 @@ net.LW{2} =rand(size(wyjscie_uczace,1),ilosc_neuronow(1));
 net.b{2} = rand(size(wyjscie_uczace,1),1);
 net.layers{2}.transferFcn = 'tansig';
 
-
+wejscie_uczace = normc(wejscie_uczace);
 % % % UCZENIE
 
 conf = {};
-for e=1:10
+for e=1:6
     odpowiedz = (net(wejscie_uczace));
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
     blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniakwadratowa bledu

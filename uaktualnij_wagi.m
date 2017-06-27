@@ -1,5 +1,5 @@
 function net = uaktualnij_wagi( net,entropy, wsp_uczenia )
-%%%input->hidden layer
+%%%>hidden layer
 layer = net.IW{1};
 for i=1:size(layer,1)
     for j=1:size(layer,2)
@@ -7,11 +7,11 @@ for i=1:size(layer,1)
     end
 end
 net.IW{1} = layer;
-%%%hidden->output layer
+%%%output layer
 layer = net.LW{2};
 for i=1:size(layer,1)
     for j=1:size(layer,2)
-        layer(i,j) = 1;
+        layer(i,j) = layer(i,j) -wsp_uczenia*entropy{2}(i,j);
     end
 end
 net.LW{2} = layer;

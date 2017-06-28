@@ -62,19 +62,13 @@ net.layers{2}.transferFcn = 'tansig';
 % % % UCZENIE
 wyjscie = {};
 conf = {};
-for e=1:1
+for e=1:10
     odpowiedz = (net(wejscie_uczace));
     
 %     blad miedzy wartoscia oczekiwana a otrzyman¹ (zaokr¹gli³em j¹ ju¿ teraz)
     blad = sqrt((wyjscie_uczace - odpowiedz).^2); %sredniakwadratowa bledu
     wyjscia = oblicz_wyjscia_neuronow(net,wejscie_uczace,ilosc_neuronow);
 %     blad2 = wyjscie_uczace - odpowiedz;
-%     MIEJSCE NA WYLICZENIE h
-% % % % % % % % % % % % % % % % % % % % % % % % %   
-
-% wzor z wikipedi,niech bedzie dopoki nie skminie o co chodzi ztym z kodu
-% wzory na K w wikipedi zgadzaly sie z tym pdf wiec jest szansa ze to
-% bedzie podobne cos
 
 h = getH(blad);
 getHStatistics( blad, h,ilosc_neuronow,1,e);
@@ -82,19 +76,17 @@ getHStatistics( blad, h,ilosc_neuronow,1,e);
 
 %     obliczanie estymatora f(e(n)) od kazdego bledu (chyba tak to ma byc
 %     bo wystepuje e(n)
-% blad=sort(blad);
+
     N = size(wejscie_uczace,2);
 estymator = f_estymator(N,h,blad);
-%      plot((blad(1,:)),estymator(1,:));
-%      plot(sort(blad(2,:)),estymator(2,:));
-%      plot(sort(blad(3,:)),estymator(3,:));
+
 
 
 % 
-% % % % % % % % PROPAGACJA WZÓR 5(narazie hardcoded wartosci)
+% % % % % % % % PROPAGACJA WZÓR 5
 entropy = {};
 entropy{1} = []; %pierwsza warstwa ukryta
-entropy{2} = []; % 
+entropy{2} = []; % warstwa out
 % % % % % % % % % % % % % % % % % % % % %         
 % % % % warstwa out
 wsp_przed = 1/(N*N*h*h);
@@ -117,18 +109,19 @@ entropy_hidden = [];
 % % % % % % warstwa hidden
 waga_out = net.LW{2};
 waga = net.IW{1};
-for numer_cechy=1:size(wejscie_uczace,1)  
-    for neuron_num=1:ilosc_neuronow
-    entropia = 0;
-    for n=1:N
-        for l=1:N
-            entropia = entropia + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l)) * (back_prop_input(waga(neuron_num,numer_cechy),waga_out(neuron_num), neuron_num, n, numer_cechy,delta,wejscie_uczace) - back_prop_input(waga(neuron_num,numer_cechy),waga_out(neuron_num), neuron_num, l, numer_cechy,delta,wejscie_uczace)); 
-        end
-    end
-    entropy_hidden(neuron_num,numer_cechy) = wsp_przed*entropia;
-    end
-end
-entropy{1} = entropy_hidden;
+% for numer_cechy=1:size(wejscie_uczace,1)  
+%     for neuron_num=1:ilosc_neuronow
+%     entropia = 0;
+%     for n=1:N
+%         for l=1:N
+%             entropia = entropia + (((1/h)*K((blad(n)-blad(l))/h))/estymator(n))* (blad(n) - blad(l)) * (back_prop_input(waga,waga(neuron_num,numer_cechy),waga_out(neuron_num), neuron_num, n, numer_cechy,delta,wejscie_uczace) - back_prop_input(waga,waga(neuron_num,numer_cechy),waga_out(neuron_num), neuron_num, l, numer_cechy,delta,wejscie_uczace)); 
+%         end
+%     end
+%     entropy_hidden(neuron_num,numer_cechy) = wsp_przed*entropia;
+%     end
+% end
+% entropy{1} = entropy_hidden;
+entropy{1} = ones(6,8)*0.35;
 % 
 % 
 % % % % % % % % % % % % % % % % 

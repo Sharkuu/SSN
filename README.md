@@ -1,5 +1,28 @@
 # POSTĘP PRAC
 
+TODO
+* sprawdzic metode oblicz_wyjscia_neuronow czy dobrze oblicza wyjscia z neuronow ukrytych - w wynikach jest cały czas 1 1 1 1 1 MOŻLIWE że wylicza za duże wartości, przez co tansig jest == 1 później
+* back_prop_output_edited2 jest zrobiony zgodnie (chyba) z https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/ delta rule - tylko że wtedy delta dla warsty ukrytej jest jedna wiec nie jestem pewny czy to dobre...no i entropia jest taka sama, ale moze tak ma byc, zobacz/pomyśl.
+
+* back_prop_input - trzeba poprawić, jeśli trzymać się https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/  to będzie prostsze niż napisane. Ale trzeba zoabczyć czym to sie rozni od wykladow Kowalskiego.
+
+* W pdf jest że uaktualniamy wszystkie wagi na końcu (wiec nie zmienimy ze po kazdej iteracji). Prześledzić uaktualnianie wag - ale to akurat powinno być ok.
+
+
+JA WYJEŻDŻAM W WEEKEND I NIE MA MNIE PRZEZ TYDZIEŃ. PRZYPOMINAM CI ŻEBYŚ SIE WZIĄŁ DO ROBOTY, BO JUŻ JEST SIERPIEŃ PRAWIE, ODPOCZYNKU BYŁO WYSTARCZAJĄCO.
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------
 # Tomek 27.06
 
 *  funkcja getH - wstawiasz tylko tablice bledow
